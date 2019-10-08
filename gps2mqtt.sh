@@ -70,7 +70,7 @@ then
 	exit 0
 fi
 
-JSON=`echo ${OUTPUT} | awk -F "\"*,\"*" '{printf "{ \"lat\": %s, \"lon\": %s, \"el\" : %s, \"speed\" : %s, \"sat_found\" : %s, \"sat_used\" : %s }\n", (length($4) == 0) ? "0" : $4, (length($5) == 0) ? "0" : $5, (length($6) == 0) ? "0" : $6, (length($7) == 0) ? "0" : $7, (length($15) == 0) ? "0" : $15, (length($16)) == 0 ? "0" : $16}'`
+JSON=`echo ${OUTPUT} | awk -F "\"*,\"*" '{printf "{ \"latitude\": %s, \"longitude\": %s, \"el\" : %s, \"speed\" : %s, \"sat_found\" : %s, \"sat_used\" : %s, \"gps_accuracy\" : %s }\n", (length($4) == 0) ? "0" : $4, (length($5) == 0) ? "0" : $5, (length($6) == 0) ? "0" : $6, (length($7) == 0) ? "0" : $7, (length($15) == 0) ? "0" : $15, (length($16) == 0) ? "0" : $16, (length($11) == 0) ? "0" : ($11 * 4.5)}'`
 
 echo ${JSON} | ${MOSQUITTO_PUB} -r -h ${host} -t ${topic} -s
 
