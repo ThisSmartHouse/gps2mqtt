@@ -11,6 +11,10 @@ http://github.com/ThisSmartHouse/atinout
 
 If you don't use the version maintained by This Smart House this script will likely not function properly as it will not time out when trying to determine if the GPS module is alive.
 
+You also need the WiringPi `gpio` utility to auto-power-on the HAT if it happens to be off:
+
+http://wiringpi.com/the-gpio-utility/
+
 It is also assumed you have the `mosquitto-clients` package installed
 
 # Setting up
@@ -24,6 +28,7 @@ $ make
 $ sudo make install
 $ cd ..
 $ sudo apt-get install mosquitto-clients
+$ sudo apt-get install wiringpi
 $ git clone http://github.com/ThisSmartHouse/gps2mqtt
 $ nano gps2mqtt/gps2mqtt.sh
 
